@@ -101,25 +101,41 @@ class UserController extends Controller
      */
     public function destroy($user)
     {
+        // Delete Post The User Has Written
+        if ($user->posts->count() > 0) {
+            foreach ($user->posts as $post) {
+                $post->delete();
+            }
+        }
+
+        // Delete the actual user
         $user->delete();
 
+        // Don't redirect if ajax just
+        // send the browser a 200
         if (request()->ajax()) {
             return response(['message' => 'User Deleted'], 200);
         }
+
+        // why didn't we use ajax?
+        // go back to user list
+        return redirect()->route('admin.user.index');
     }
 
+    /**
+     * not quite sure where to put this route
+     * but it is helpful to be able to clear cached users.
+     *
+     * @return \Illuminate\Http\response $response
+     */
     public function clearCache()
     {
-        if (request()->ajax()) {
-            // Clear User Cache
-            \Artisan::call('cache:flush:users');
+        // Clear User Cache
+        \Artisan::call('cache:flush:users');
 
             // Return Json
-            return response([
-                'results' => 'Cached Cleared Successfully',
-            ], 200, [
-                'Content-Type' => 'application/json',
-            ]);
+        if (request()->ajax()) {
+            return response(['results' => 'Cached Cleared Successfully'], 200);
         }
     }
 }
