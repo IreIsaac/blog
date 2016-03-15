@@ -101,7 +101,11 @@ class UserController extends Controller
      */
     public function destroy($user)
     {
-        //
+        $user->delete();
+
+        if (request()->ajax()) {
+            return response(['message' => 'User Deleted'], 200);
+        }
     }
 
     public function clearCache()

@@ -35,12 +35,7 @@ class EloquentUserRepository implements UserRepository
 
     public function paginate(Request $request)
     {
-        $cacheKey = 'user:list:page-'.($page = $request->query('page', 1));
-
-        return $this->cache->remember($cacheKey, $this->getCacheTime(), function () use ($request, $page) {
-
-            return $this->user->paginate();
-        });
+        return $this->user->paginate();
     }
 
     public function findBySlug($slug)

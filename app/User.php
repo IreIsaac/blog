@@ -28,6 +28,12 @@ class User extends Authenticatable
      */
     protected static function boot()
     {
+        static::deleting(function ($user) {
+            if (\Cache::has($user->cacheKey())) {
+                \Cache::forget($user->cacheKey());
+            }
+        });
+
         static::saving(function ($user) {
             // username has to be unique so if
             // we made it this far I think its 
