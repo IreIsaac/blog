@@ -45,8 +45,11 @@ class EloquentUserRepository implements UserRepository
 
     public function findBySlug($slug)
     {
-        return $this->cache->rememberForever('user:'.$slug, function () {
-            return $this->user->with('posts.tags')->first();
+        return $this->cache->rememberForever('user:'.$slug, function () use ($slug) {
+
+            $user = $this->user->newQuery()->with('posts.tags')->where('username', $slug)->first();
+
+            return $user;
         });
     }
 
