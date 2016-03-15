@@ -21,7 +21,10 @@ class Post extends Model
         // instead of putting it in the form
         // lets grab it from session
         static::creating(function ($post) {
-            $post->user_id = Auth::id();
+            if (!$post->user_id) {
+                $post->user_id = Auth::id();
+            }
+
         });
 
         // since title needs to unique I 
