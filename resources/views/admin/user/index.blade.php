@@ -4,7 +4,7 @@
 
     <div class="container">
         <h2>Users</h2>
-
+        <button class="right button-delete" v-delete-btn route="{{ route('admin.user.cache:clear') }}">Clear User Cache</button>
         <table class="tables">
             <thead>
                 <tr>

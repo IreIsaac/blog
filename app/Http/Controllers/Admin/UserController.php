@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $users = $this->user->paginate($request);
 
-        return view('admin.user.index', compact('users', 'tableColumns'));
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -73,7 +73,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user)
     {
         //
     }
@@ -86,7 +86,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
     {
         //
     }
@@ -101,5 +101,20 @@ class UserController extends Controller
     public function destroy($user)
     {
         //
+    }
+
+    public function clearCache()
+    {
+        if (request()->ajax()) {
+            // Clear User Cache
+            \Artisan::call('cache:flush:users');
+
+            // Return Json
+            return response([
+                'results' => 'Cached Cleared Successfully',
+            ], 200, [
+                'Content-Type' => 'application/json',
+            ]);
+        }
     }
 }

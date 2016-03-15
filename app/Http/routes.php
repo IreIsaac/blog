@@ -81,6 +81,7 @@ Route::group(['middleware' => 'web'], function () {
  * Admin
  */
 Route::group(['middleware' => 'web'], function () {
+
     // Admin Dashboard
     Route::get('admin', [
         'uses' => 'Admin\DashboardController@index',
@@ -88,6 +89,11 @@ Route::group(['middleware' => 'web'], function () {
     ]);
 
     Route::resource('admin/user', 'Admin\UserController');
+
+    Route::delete('admin/user/cache', [
+        'uses' => 'Admin\UserController@clearCache',
+        'as'   => 'admin.user.cache:clear',
+    ]);
 
     Route::resource('admin/post', 'Admin\PostController');
 
