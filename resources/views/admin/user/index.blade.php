@@ -25,7 +25,7 @@
                                 <i class="fa fa-user"></i>  Show
                             </a>
 
-                            <button class="button-delete"><i class="fa fa-trash"></i>  Delete</button>
+                            <button class="button-delete" v-delete-btn route="{{ route('admin.user.destroy', ['user' => $user->username]) }}"><i class="fa fa-trash"></i>  Delete</button>
                         </td>
                     </tr>
                 @endforeach

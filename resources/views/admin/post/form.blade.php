@@ -14,7 +14,7 @@
         </div>
 
         <div>
-            <label for="body">Body</label>
+            <label for="body">Body <small>Use Markdown</small></label>
             <textarea name="body" rows="10">{{ old('body', $post->body) }}</textarea>
         </div>
 

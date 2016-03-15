@@ -51,12 +51,10 @@ class BlogController extends Controller
      *
      * @param Post $post [description]
      *
-     * @return [type] [description]
+     * @return \Illuminate\Http\Response $response
      */
     public function show($post)
     {
-        $post = $this->post->findBySlug($post);
-
         return view('public.blog.show', compact('post'));
     }
 }
