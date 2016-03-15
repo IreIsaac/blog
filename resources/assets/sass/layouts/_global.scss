@@ -1,0 +1,14 @@
+.container {
+	@include outer-container();
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.right {
+    margin: .5em;
+    float: right;
+}
+
+.button {
+    @extend button;
+}

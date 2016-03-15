@@ -1,0 +1,23 @@
+.articles {
+	@include span-columns(9);
+
+	&__filters {
+			text-align:center;
+		h3 {
+			@include fill-parent();
+			border-bottom: 1px solid;
+		}
+
+		@include span-columns(3);
+
+		ul li { 
+				text-align: center;
+				margin: 0 auto;
+
+			a{
+				text-align: center;
+				@include span-columns(1 of 2);
+			}
+		}
+	}
+}

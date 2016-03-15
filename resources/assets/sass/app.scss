@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css?family=Sanchez:400italic,400");
+@import url("https://fonts.googleapis.com/css?family=Questrial");
+
+@import "./bourbon/bourbon";
+@import "./neat/neat";
+@import "./base/base";
+@import "node_modules/font-awesome/scss/font-awesome";
+@import "node_modules/sweetalert/dev/sweetalert";
+
+@import "./layouts/global";
+@import "./layouts/blog";
+@import "./layouts/admin-posts";
+@import "./layouts/tables";
+
+@import "./modules/buttons";
+@import "./modules/sliding-panel";
+@import "./modules/navbar";
+@import "./modules/badges";
+@import "./modules/pagination";
+
+@import "./modules/forms/posts-form";
+
+body {
+    font-family: 'Lato';
+}
+
+.fa-btn {
+    margin-right: 6px;
+}

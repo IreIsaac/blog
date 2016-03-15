@@ -1,0 +1,6 @@
+form#posts-form {
+    div.checkbox {
+        @include span-columns(3);
+        @include omega(4n);
+    }
+}
