@@ -31,7 +31,7 @@
                             <a class="button" href="{{ route('admin.post.edit', ['post' => $post->slug ]) }}">
                                 <i class="fa fa-pencil"></i>  Edit
                             </a>
-                            <button  class="button button-delete" v-on:click="deleteModel('{!! $post->slug !!}')">
+                            <button  class="button button-delete" v-delete-btn route="{{ route('admin.post.destroy', ['post' => $post->slug]) }}">
                                     <i class="fa fa-trash"></i>  Delete
                             </button>
                         </td>

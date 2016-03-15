@@ -114,10 +114,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($post)
     {
-        $post = $this->post->findBySlug($slug);
-
         $post->tags()->sync([]);
 
         $post->delete();

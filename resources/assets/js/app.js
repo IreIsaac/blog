@@ -2,6 +2,8 @@ var Vue = require('vue');
 Vue.use(require('vue-resource'));
 require('sweetalert');
 
+Vue.directive('delete-btn', require('./directives/delete.js'));
+
 var vm = new Vue({
     el: 'body',
 
@@ -18,42 +20,6 @@ var vm = new Vue({
     },
 
     data: {},
-
-    methods: {
-        deleteModel: function(slug) {
-            swal({
-                title: "Are you sure?",   
-                text: "You will not be able to recover this post!",
-                type: "warning",   
-                showCancelButton: true,   
-                confirmButtonColor: "#DD6B55",   
-                confirmButtonText: "Yes, delete it!",   
-                closeOnConfirm: false 
-            }, function(isConfirm) {
-                if (isConfirm) {
-                    Vue.http.post('/admin/post/' + slug, {_method: 'DELETE'}).then( function(response) {
-                        
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 1000);
-
-                        swal({
-                            title: "Deleted!",
-                            text: "Post has been deleted.",
-                            type: "success"
-                        });
-                    }).catch(function(error) {
-                        swal({
-                            title: "Uh Oh", 
-                            text: "Something Went Wrong",
-                            type: "warning"
-                        });
-                    });
-
-                }
-            });
-        }
-    }
 });
 
 (function() {
